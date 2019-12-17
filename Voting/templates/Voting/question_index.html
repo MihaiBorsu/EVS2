@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% if question %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-5">{{ question.question_text }}</h1>
+        <h1 class="display-5">{{ question.question_id }}</h1>
+      </div>
+    </div>
+  {% endif %}
+
+  {% for choice in view.choices %}
+    <div class="jumbotron">
+      <div class="container">
+        <p>{{ choice.choice_text }}</p>
+        <p>Votes so far: {{ choice.choice_count }}</p>
+        {% if user.is_authenticated %}
+        <p><a class="btn btn-primary btn-lg" href="/voting/upvote/{{ question.id }}/{{ choice.id }}" role="button">Vote! &raquo;</a></p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+
+{% endblock %}
+

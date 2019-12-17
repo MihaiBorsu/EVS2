@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% if event %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-5">{{ event.event_name }}</h1>
+        <p>{{ event.event_description }}</p>
+      </div>
+    </div>
+  {% endif %}
+
+
+  {% for q in view.questions %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-5">{{ q.question_text }}</h1>
+        <p><a class="btn btn-primary btn-lg" href="{{q.id}}" role="button">vote &raquo;</a></p>
+      </div>
+    </div>
+  {% endfor %}
+
+
+{% endblock %}
+

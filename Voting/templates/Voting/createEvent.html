@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="jumbotron">
+      <div class="container">
+          <form method="post">{% csrf_token %}
+            <p>{{form}}</p>
+            <button type="submit" class="btn btn-primary btn-lg">submit and add questions</button>
+          </form>
+      </div>
+  </div>
+
+{% endblock %}

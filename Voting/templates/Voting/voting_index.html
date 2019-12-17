@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <p><a class="btn btn-primary btn-lg" href="/voting/createEvent" role="button">Create your voting event! &raquo;</a></p>
+
+    {% if Enrolled_Voting_Events %}
+        {% for voting_event in Enrolled_Voting_Events %}
+        <div class="jumbotron">
+          <div class="container">
+              <h1 class="display-5">{{ voting_event.event_name }}</h1>
+              {% if voting_event.is_public %}
+                  <p>Event type: Public</p>
+              {% else %}
+                  <p>Event type: Private</p>
+              {% endif %}
+              {% if user.is_authenticated %}
+                  <p>Owner: {{ voting_event.owner }}</p>
+                  <!--<p>enrolled users: {{ voting_event.enrolled_users }}</p>-->
+              {% endif %}
+              <p>description: {{ voting_event.event_description }}</p>
+              <p><a class="btn btn-primary btn-lg" href="{{voting_event.id}}" role="button">Acces this Voting Event &raquo;</a></p>
+          </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    {% endif %}
+
+{% endblock %}
